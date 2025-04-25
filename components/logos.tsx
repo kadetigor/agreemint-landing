@@ -1,59 +1,60 @@
-import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animation-variants";
-import TextBlur from "./ui/text-blur";
+import { FaDatabase, FaCloud, FaServer, FaBuilding, FaGlobe } from "react-icons/fa";
 
 const logos = [
-  { href: "https://nextjs.org", src: "/nextjs.svg", alt: "Next.js Logo" },
-  { href: "https://notion.so", src: "/notion.svg", alt: "Notion Logo" },
-  { href: "https://resend.com", src: "/resend.svg", alt: "Resend Logo" },
-  { href: "https://upstash.com", src: "/upstash.svg", alt: "Upstash Logo" },
-  { href: "https://ui.shadcn.com", src: "/shadcn.svg", alt: "shadcn Logo" },
-  { href: "https://vercel.com", src: "/vercel.svg", alt: "Vercel Logo" },
+  {
+    name: "Enterprise ERP",
+    icon: FaDatabase,
+  },
+  {
+    name: "Cloud Platforms",
+    icon: FaCloud,
+  },
+  {
+    name: "On-Premise",
+    icon: FaServer,
+  },
+  {
+    name: "Enterprise",
+    icon: FaBuilding,
+  },
+  {
+    name: "Global",
+    icon: FaGlobe,
+  },
 ];
 
 export default function Logos() {
   return (
     <motion.div
-      className="flex h-full w-full flex-col gap-2 pb-12 pt-12 md:pb-24 md:pt-16"
+      className="mt-16 w-full max-w-6xl px-4 sm:px-6 lg:px-8"
       variants={containerVariants}
       initial="hidden"
       animate="visible">
-      <motion.div variants={itemVariants}>
-        <TextBlur
-          className="text-center text-2xl font-medium tracking-tight text-zinc-200 md:text-3xl"
-          text="Powered by"
-        />
+      <motion.div variants={itemVariants} className="text-center">
+        <p className="text-sm text-muted-foreground">
+          Trusted by enterprises worldwide
+        </p>
       </motion.div>
 
-      <motion.div variants={itemVariants}>
-        <TextBlur
-          className="text-center text-base text-zinc-300 sm:text-lg"
-          text="Simple and powerful tools that help you build faster"
-          duration={0.8}
-        />
+      <motion.div
+        variants={containerVariants}
+        className="mt-8 flex flex-wrap items-center justify-center gap-8">
+        {logos.map((logo) => (
+          <motion.div
+            key={logo.name}
+            variants={itemVariants}
+            className="flex items-center justify-center">
+            <logo.icon className="h-8 w-8 text-muted-foreground transition-colors hover:text-foreground" />
+          </motion.div>
+        ))}
       </motion.div>
 
       <motion.div
         variants={itemVariants}
-        className="mt-4 grid w-full grid-cols-2 items-center justify-center gap-4 md:mt-6 md:grid-cols-3 md:gap-6">
-        {logos.map((logo, index) => (
-          <Link
-            key={index}
-            href={logo.href}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="flex h-24 items-center justify-center rounded-lg border bg-zinc-900 p-8 transition-all duration-150 ease-in-out md:hover:border-zinc-700 md:hover:bg-accent">
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={100}
-              height={100}
-              className="h-auto w-32 opacity-85"
-            />
-          </Link>
-        ))}
+        className="mt-8 text-center text-sm text-muted-foreground">
+        <p>Seamlessly integrates with your existing systems</p>
       </motion.div>
     </motion.div>
   );

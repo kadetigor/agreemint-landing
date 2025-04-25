@@ -282,10 +282,10 @@ const Particles: React.FC<ParticlesProps> = ({
 
   return (
     <div
-      className={`${className} fixed inset-0 -z-[100]`}
+      className={`${className} fixed inset-0 -z-[100] opacity-60 pointer-events-none`}
       ref={canvasContainerRef}
       aria-hidden="true">
-      <canvas ref={canvasRef} style={{ width: "100vw", height: "100vh" }} />
+      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
     </div>
   );
 };

@@ -1,26 +1,43 @@
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { containerVariants, itemVariants } from "@/lib/animation-variants";
+import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { useTheme } from "next-themes";
 
 export default function Footer() {
+  const { theme } = useTheme();
+  const logoSrc = theme === "dark" ? "/agreemint-logo-dark.png" : "/agreemint-logo.png";
+
   return (
-    <motion.div
+    <motion.footer
+      className="mt-24 w-full max-w-6xl px-4 pb-8 sm:px-6 lg:px-8"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
-      className="mt-auto flex w-full items-center justify-center gap-1 border-t bg-background p-6 text-muted-foreground md:justify-start">
-      <motion.div variants={itemVariants}>
-        Brought to you by{" "}
-        <Link
-          href="https://lakshb.dev"
-          rel="noopener noreferrer"
-          target="_blank">
-          <span className="text-zinc-300 underline underline-offset-2 transition-all duration-200 ease-linear hover:text-yellow-200">
-            lakshaybhushan
-          </span>
-          .
-        </Link>
+      animate="visible">
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row">
+        <div className="flex items-center space-x-2">
+          <img src={logoSrc} alt="Agreemint Logo" className="h-6 w-6" />
+          <span className="text-sm font-medium">© 2024 Agreemint. All rights reserved.</span>
+        </div>
+
+        <div className="flex items-center space-x-6">
+          <a
+            href="https://x.com/agreemint"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground">
+            <FaXTwitter className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/company/agreemint"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground transition-colors hover:text-foreground">
+            <FaLinkedin className="h-5 w-5" />
+          </a>
+        </div>
       </motion.div>
-    </motion.div>
+    </motion.footer>
   );
 }
